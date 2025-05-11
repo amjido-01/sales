@@ -21,9 +21,20 @@ export default function RootLayout() {
 
   return (
     <GluestackUIProvider mode="light"><ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack
+         screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+        >
+          <Stack.Screen name="index" />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen name="dashboard" />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider></GluestackUIProvider>
