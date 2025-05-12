@@ -60,7 +60,7 @@ export default function LoginScreen() {
           </Button>
                  <Pressable onPress={() => router.push('/(auth)/register')}>
                   <Text>
-                    Already have an account? <Text>Login</Text>
+                    Dont have an account? <Text>Register</Text>
                   </Text>
                 </Pressable>
         </VStack>
