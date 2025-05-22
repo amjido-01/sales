@@ -75,7 +75,7 @@ export default function RegisterScreen() {
               className="py-2 text-[16px] leading-[26px] font-normal rounded-[6px] h-[44px]"
             />
           </Input>
-                    <Input className="text-center h-[44px]">
+          <Input className="text-center h-[44px]">
                      <InputSlot className="pl-3" onPress={handleState}>
               <InputIcon className="h-[20px] w-[20px]" color="#171A1FFF" as={showPassword ? EyeIcon : EyeOffIcon} />
             </InputSlot>
