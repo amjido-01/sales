@@ -8,17 +8,20 @@ import { Pressable } from "@/components/ui/pressable";
 import { VStack } from "@/components/ui/vstack";
 import { auth } from '@/firebaseConfig';
 import { router } from 'expo-router';
+import { FirebaseError } from "firebase/app";
 import colors from "tailwindcss/colors"
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Text } from 'react-native';
+import { firebaseErrorMessages } from "@/utils/firebaseErrors";
+
 
 export default function RegisterScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false)
-      const [loading, setLoading] = useState(false);
-      const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
 
 
@@ -36,20 +39,12 @@ export default function RegisterScreen() {
     await createUserWithEmailAndPassword(auth, email, password);
     router.replace('/dashboard');
   } catch (error: any) {
-    console.log(error.code);
-    switch (error.code) {
-      case 'auth/email-already-in-use':
-        setErrorMessage('Email is already in use.');
-        break;
-      case 'auth/invalid-email':
-        setErrorMessage('Invalid email address.');
-        break;
-      case 'auth/weak-password':
-        setErrorMessage('Password should be at least 6 characters.');
-        break;
-      default:
-        setErrorMessage('An unexpected error occurred.');
-    }
+       if (error instanceof FirebaseError) {
+           const message =
+             firebaseErrorMessages[error.code as keyof typeof firebaseErrorMessages] ||
+             "An unexpected error occurred.";
+           setErrorMessage(message);
+           }
   } finally {
     setLoading(false);
   }
