@@ -1,7 +1,7 @@
 // app/index.tsx
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '@/firebaseConfig'; // adjust if your config path is different
+import { auth } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import { ActivityIndicator, View } from 'react-native';
 
@@ -12,9 +12,9 @@ export default function Index() {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
-        router.replace('/(app)/dashboard'); // Or whatever your main screen is
+        router.replace('/dashboard');
       } else {
-        router.replace('/(auth)/login');
+        router.replace('/login');
       }
       setLoading(false);
     });

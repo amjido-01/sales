@@ -8,7 +8,7 @@ export default function Dashboard() {
 
   const handleLogout = async () => {
     await signOut(auth);
-    router.replace('/login'); // redirect to login after logout
+    router.replace('/login');
   };
 
   return (

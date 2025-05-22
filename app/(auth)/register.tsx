@@ -34,7 +34,7 @@ export default function RegisterScreen() {
   setErrorMessage('');
   try {
     await createUserWithEmailAndPassword(auth, email, password);
-    router.replace('/(app)/dashboard');
+    router.replace('/dashboard');
   } catch (error: any) {
     console.log(error.code);
     switch (error.code) {
@@ -113,7 +113,7 @@ export default function RegisterScreen() {
         <ButtonText className="text-[16px] leading-[26px] font-normal">Sign Up</ButtonText>
       )}</ButtonText>
           </Button>
-          <Pressable className="mt-[20px]" onPress={() => router.push('/(auth)/login')}>
+          <Pressable className="mt-[20px]" onPress={() => router.push('/login')}>
             <Text className="text-[14px] leading-[22px] font-normal text-[#000000ff]">
               Already have an account? <Text className="text-[#636ae8ff]">Login</Text>
             </Text>

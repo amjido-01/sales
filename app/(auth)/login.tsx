@@ -18,7 +18,7 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.replace('/(app)/dashboard');
+      router.replace('/dashboard');
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +58,7 @@ export default function LoginScreen() {
           <Button size="sm" onPress={handleLogin}>
             <ButtonText>Login</ButtonText>
           </Button>
-                 <Pressable onPress={() => router.push('/(auth)/register')}>
+                 <Pressable onPress={() => router.push('/register')}>
                   <Text>
                     Dont have an account? <Text>Register</Text>
                   </Text>
