@@ -9,7 +9,7 @@ import { auth } from '@/firebaseConfig';
 import { router } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { Text } from 'react-native';
+import { Text, KeyboardAvoidingView, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Pressable } from "@/components/ui/pressable";
 import { FirebaseError } from "firebase/app";
 import { firebaseErrorMessages } from "@/utils/firebaseErrors";
@@ -50,6 +50,16 @@ export default function LoginScreen() {
   };
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={{ flex: 1 }}
+    keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0} // Adjust as needed
+  >
+     <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      keyboardShouldPersistTaps="handled"
+    >
     <Center className="flex-1 bg-white px-4">
 
        <VStack className="pb-4 space-y-1">
@@ -112,5 +122,8 @@ export default function LoginScreen() {
         </VStack>
       </Box>
     </Center>
+    </ScrollView>
+    </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
